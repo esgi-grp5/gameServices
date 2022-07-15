@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
-builder.Services.AddSingleton<IApiIGDB>(new ApiIGDB(configuration.GetSection("ApiUrl").Value.ToString(), configuration.GetSection("ApiKey").Value.ToString()));
+builder.Services.AddSingleton<IApiIGDB>(new ApiRAWG(configuration.GetSection("ApiUrl").Value.ToString(), configuration.GetSection("ApiKey").Value.ToString()));
 builder.Services.AddSingleton<IGameServices, GameServices>();
 
 builder.Services.AddControllers();
