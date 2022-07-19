@@ -18,8 +18,9 @@
             idGame = apigame.id;    
             slug = apigame.slug;
             name = apigame.name;
-   
-            
+            background_image = apigame.background_image;
+
+
 
         }
         
