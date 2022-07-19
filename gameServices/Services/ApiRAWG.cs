@@ -2,6 +2,7 @@
 using gameServices.Models;
 using System.Text;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace gameServices.Services
 {
@@ -72,7 +73,7 @@ namespace gameServices.Services
             try
             {
 
-                var url = makeUrl(methode: "api/games", searchName: searchName);
+                var url = makeUrl(methode: "api/games/", searchName: searchName);
 
                 HttpResponseMessage response = await client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
@@ -94,8 +95,9 @@ namespace gameServices.Services
         }
         public async Task<Game> getGameByID(int id)
         {
+           // string strgame;
             Game game = new Game();
-            try
+           try
             {
                 var url = makeUrl(type: typeobject, searchId: id);
 
@@ -104,13 +106,17 @@ namespace gameServices.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonresult = await response.Content.ReadFromJsonAsync<JsonElement>();
-                    game = jsonresult.ToObject<Game>();
+                     game = jsonresult.ToObject<Game>();
+                      // strgame = Convert.ToString(jsonresult);
+
+                  //  var resultO = JsonConvert.DeserializeObject<Game>(strgame);
                 }
-            }
+              }
             catch (Exception ex)
-            {
-            }
-            return game;
+              {
+              }
+          
+             return game;
         }
 
         public string GetToken()
