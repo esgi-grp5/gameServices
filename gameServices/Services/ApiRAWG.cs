@@ -67,7 +67,7 @@ namespace gameServices.Services
             return strb.ToString();
         }
 
-        public async Task<List<Game>> searchGame(string searchName, int page = 0)
+       /* public async Task<List<Game>> searchGame(string searchName, int page = 0)
         {
             List<Game> game = new List<Game>();
             try
@@ -92,10 +92,10 @@ namespace gameServices.Services
             }
             return game;
 
-        }
+        }*/
         public async Task<Game> getGameByID(int id)
         {
-           // string strgame;
+   
             Game game = new Game();
            try
             {
@@ -107,9 +107,7 @@ namespace gameServices.Services
                 {
                     var jsonresult = await response.Content.ReadFromJsonAsync<JsonElement>();
                      game = jsonresult.ToObject<Game>();
-                      // strgame = Convert.ToString(jsonresult);
 
-                  //  var resultO = JsonConvert.DeserializeObject<Game>(strgame);
                 }
               }
             catch (Exception ex)
@@ -119,6 +117,29 @@ namespace gameServices.Services
              return game;
         }
 
+        public async Task<Game> searchGame(string searchName, int page = 0)
+        {
+
+            Game game = new Game();
+            try
+            {
+                var url = makeUrl(methode: "api/games/", searchName: searchName);
+
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonresult = await response.Content.ReadFromJsonAsync<JsonElement>();
+                    game = jsonresult.ToObject<Game>();
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return game;
+        }
         public string GetToken()
         {
             return ApiKey;

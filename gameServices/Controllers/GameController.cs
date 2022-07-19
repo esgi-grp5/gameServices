@@ -22,6 +22,27 @@ namespace gameServices.Controllers
             gameServices = GameServices;
         }
 
+        /* [HttpGet("searchByName/{GameName}")]
+         public async Task<string> GetByName(string GameName)
+         {
+             var result = new HttpResponseApi();
+
+             try
+             {
+                 var response = await gameServices.getGameByName(GameName);
+                 result.resultList = response;
+                 result.resultCount = response.Count;
+                 result.Status = HttpStatusCode.OK;
+             }
+             catch (Exception ex)
+             {
+                 result.Status = HttpStatusCode.InternalServerError;
+                 result.Message = ex.Message;
+             }
+
+             return JsonSerializer.Serialize(result);
+         }*/
+
         [HttpGet("searchByName/{GameName}")]
         public async Task<string> GetByName(string GameName)
         {
@@ -30,8 +51,9 @@ namespace gameServices.Controllers
             try
             {
                 var response = await gameServices.getGameByName(GameName);
-                result.resultList = response;
-                result.resultCount = response.Count;
+                result.resultList = new List<MyGame>();
+                result.resultList.Add(response);
+                result.resultCount = result.resultList.Count();
                 result.Status = HttpStatusCode.OK;
             }
             catch (Exception ex)
@@ -39,10 +61,8 @@ namespace gameServices.Controllers
                 result.Status = HttpStatusCode.InternalServerError;
                 result.Message = ex.Message;
             }
-
             return JsonSerializer.Serialize(result);
         }
-
 
         [HttpGet("searchById/{GameId}")]
         public async Task<string> GetByID(int GameId)
