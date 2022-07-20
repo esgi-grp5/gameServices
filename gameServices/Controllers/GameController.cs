@@ -4,7 +4,6 @@ using gameServices.Services;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 
 namespace gameServices.Controllers
@@ -21,27 +20,6 @@ namespace gameServices.Controllers
         {
             gameServices = GameServices;
         }
-
-        /* [HttpGet("searchByName/{GameName}")]
-         public async Task<string> GetByName(string GameName)
-         {
-             var result = new HttpResponseApi();
-
-             try
-             {
-                 var response = await gameServices.getGameByName(GameName);
-                 result.resultList = response;
-                 result.resultCount = response.Count;
-                 result.Status = HttpStatusCode.OK;
-             }
-             catch (Exception ex)
-             {
-                 result.Status = HttpStatusCode.InternalServerError;
-                 result.Message = ex.Message;
-             }
-
-             return JsonSerializer.Serialize(result);
-         }*/
 
         [HttpGet("searchByName/{GameName}")]
         public async Task<string> GetByName(string GameName)

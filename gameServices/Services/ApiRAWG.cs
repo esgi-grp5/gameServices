@@ -2,7 +2,7 @@
 using gameServices.Models;
 using System.Text;
 using System.Text.Json;
-using Newtonsoft.Json;
+
 
 namespace gameServices.Services
 {
@@ -50,49 +50,10 @@ namespace gameServices.Services
             
             strb.Append($"?key={ApiKey}");
 
-            //Parameter
-
-           /* if (page.HasValue)
-            {
-                if (page > 0)
-                {
-                    strb.Append($"&page={page.Value}");
-                }
-            }
-            if (!string.IsNullOrEmpty(language))
-            {
-                strb.Append($"&language={language}");
-            }*/
 
             return strb.ToString();
         }
 
-       /* public async Task<List<Game>> searchGame(string searchName, int page = 0)
-        {
-            List<Game> game = new List<Game>();
-            try
-            {
-
-                var url = makeUrl(methode: "api/games/", searchName: searchName);
-
-                HttpResponseMessage response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonresult = await response.Content.ReadFromJsonAsync<TmdbApiObject>();
-
-                    foreach (var item in jsonresult.results)
-                    {
-                        game.Add(item.ToObject<Game>());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                var test = ex.Message;
-            }
-            return game;
-
-        }*/
         public async Task<Game> getGameByID(int id)
         {
    

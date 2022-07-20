@@ -1,8 +1,5 @@
 ﻿namespace gameServices.Models
 {
-
-   
-
     public class Game
     {
         public int id { get; set; }
@@ -17,8 +14,6 @@
         public int creators_count { get; set; }
         public int achievements_count { get; set; }
  
-  
     }
-
 
 }

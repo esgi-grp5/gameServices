@@ -7,8 +7,6 @@
         public string name { get; set; }
         public string background_image { get; set; }
 
-    
-
         public MyGame()
         {
         }
@@ -20,10 +18,6 @@
             name = apigame.name;
             background_image = apigame.background_image;
 
-
-
-        }
-        
-
+        }   
     }
 }
